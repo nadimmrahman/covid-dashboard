@@ -11,9 +11,10 @@ import pandas as pd
 
 __author__ = "Nadim Rahman"
 
+# base_dir = /Users/nadimrahman/Documents/workspace/development/ena_data_pull
 ENA_PORTAL_API_URL = 'https://www.ebi.ac.uk/ena/portal/api/search'
-searches = {'sequence': {'fields': 'study_accession, sample_accession, base_count, collection_date, country, description, host, isolate, location, strain', 'query': 'tax_tree(2697049)','result': 'sequence', 'dataPortal': 'ena'},
-            'read_run': {'fields': 'study_accession, sample_accession, experiment_accession, instrument_platform, instrument_model, library_name, nominal_length, library_layout, library_strategy, library_source, library_selection, base_count, center_name, experiment_title, fastq_ftp, collection_date, country, description, isolate, location, strain', 'query': 'tax_tree(2697049)', 'result': 'read_run', 'dataPortal': 'ena'}}
+searches = {'sequence': {'fields': 'study_accession, sample_accession, base_count, collection_date, country, description, host, isolate, strain', 'query': 'tax_tree(2697049)','result': 'sequence', 'dataPortal': 'ena'},
+            'read_run': {'fields': 'study_accession, sample_accession, experiment_accession, instrument_platform, instrument_model, library_name, nominal_length, library_layout, library_strategy, library_source, library_selection, base_count, center_name, experiment_title, fastq_ftp, collection_date, country, description, isolate, strain', 'query': 'tax_tree(2697049)', 'result': 'read_run', 'dataPortal': 'ena'}}
 headers = {'accept': '*/*'}
 
 
@@ -158,7 +159,7 @@ if __name__ == '__main__':
         result_parameters = searches.get(result)  # Obtain the specific result parameters for the search
 
         ### Retrieve Metadata ###
-        metadata_obj = RetrieveENAMetadata(result_parameters, test=True)
+        metadata_obj = RetrieveENAMetadata(result_parameters, test=False)
         result_metadata = metadata_obj.retrieve_metadata()
 
         ### Reshape the Metadata ###

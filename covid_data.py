@@ -98,6 +98,20 @@ class RetrieveENAMetadata:
         return final_results
 
 
+class readENAMetadata:
+    # Retrieve and save data for plots
+    def __init__(self, data_type):
+        self.data_type = data_type
+
+    def read_data(self):
+        """
+        Read data into memory
+        :return: Data frame
+        """
+        df = pd.read_csv(os.path.join('input_data', self.data_type+".tsv", sep="\t")
+        return df
+
+
 class reshapeData:
     # Reshape the metadata obtained to create R plots
     def __init__(self, df, result):
@@ -165,3 +179,5 @@ if __name__ == '__main__':
         ### Reshape the Metadata ###
         reshape_obj = reshapeData(result_metadata, result)
         reshaped_metadata = reshape_obj.create_cumulative_by_country()
+
+    # ReadENAData is for when data is to be read into memory to produce plots
